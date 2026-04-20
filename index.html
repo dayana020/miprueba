@@ -2,67 +2,97 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi primera pagina </title>
+  <title>Mini App</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
   <style>
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #D1ABE0, #CDCFF7, #F5C9F3);
+      background: linear-gradient(135deg, #1e1e2f, #3a3a5f);
       color: white;
       text-align: center;
+      margin: 0;
     }
 
     .container {
-      margin-top: 100px;
+      margin-top: 80px;
     }
 
-    h1 {
-      font-size: 50px;
-      font-weight: 600;
-    }
-
-    p {
-      font-size: 20px;
-      opacity: 0.9;
-    }
-
-    .btn {
-      margin-top: 20px;
-      padding: 12px 25px;
+    input {
+      padding: 10px;
+      width: 200px;
+      border-radius: 10px;
       border: none;
-      border-radius: 25px;
-      background: white;
-      color: #764ba2;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s;
+      outline: none;
     }
 
-    .btn:hover {
-      background: #ddd;
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #00ffcc;
+      color: black;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 30px;
+    }
+
+    li {
+      background: rgba(255,255,255,0.1);
+      margin: 10px auto;
+      padding: 10px;
+      width: 250px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .delete {
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Bienvenido a mi pagina</h1>
-    <p>Hola Caro hice una pagina para poder estudiar mas, ¿como voy?</p>
-<button class="btn" onclick="hack()">Bien</button>
+
+<div class="container">
+  <h1>📝 Mi Mini App</h1>
+
+  <input type="text" id="tarea" placeholder="Escribe una tarea">
+  <button onclick="agregarTarea()">Agregar</button>
+
+  <ul id="lista"></ul>
+</div>
 
 <script>
-function hack() {
-  alert("Acceso concedido 🔓");
+function agregarTarea() {
+  const input = document.getElementById("tarea");
+  const texto = input.value;
+
+  if (texto === "") return;
+
+  const li = document.createElement("li");
+  li.innerHTML = texto + ' <button class="delete" onclick="eliminar(this)">X</button>';
+
+  document.getElementById("lista").appendChild(li);
+
+  input.value = "";
 }
 
-  <button class="btn" onclick="hack()">Mal</button>
-
-<script>
-function hack() {
-  alert("Acceso concedido 🔓");
+function eliminar(boton) {
+  boton.parentElement.remove();
 }
 </script>
-  </div>
+
 </body>
 </html>
